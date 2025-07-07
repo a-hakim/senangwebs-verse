@@ -7,7 +7,8 @@
       content="Simple 3rd person game with move, jump, and crouch functionality using A-Frame and vanilla JS."
     />
     <!-- A-Frame v1.5.0 -->
-    <script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
+    <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
     <script src="./swv.js"></script>
   </head>
 
@@ -15,6 +16,7 @@
     <a-scene background="color: #ECECEC" renderer="colorManagement: true;">
       <!-- Assets -->
       <a-assets>
+        <a-asset-item id="player-model" src="./business_man.glb" crossorigin="anonymous"></a-asset-item>
         <a-mixin
           id="cube"
           geometry="primitive: box; width: 2; height: 2; depth: 2"
@@ -25,14 +27,7 @@
       <!-- Player Entity -->
       <a-entity id="player" data-swv-player>
         <!-- Visible Player Model -->
-        <a-cylinder
-          id="player-model"
-          color="#FF6347"
-          height="1.8"
-          radius="0.4"
-          position="0 0 0"
-        >
-        </a-cylinder>
+        <a-entity gltf-model="#player-model" modify-materials animation-mixer="clip: CharacterArmature|Walk"></a-entity>
       </a-entity>
 
       <!-- Camera Rig -->
