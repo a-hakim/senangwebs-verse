@@ -46,8 +46,9 @@ AFRAME.registerComponent("data-swv-player", {
     const data = this.data;
     const delta = timeDelta / 1000;
 
-    const groundY =
-      (this.isCrouching ? data.crouchHeight : data.playerHeight) / 2;
+    // const groundY =
+    //   (this.isCrouching ? data.crouchHeight : data.playerHeight) / 2;
+    const groundY = 0;
 
     // --- JUMP & GRAVITY LOGIC ---
     if (this.el.object3D.position.y > groundY || this.velocity.y > 0) {

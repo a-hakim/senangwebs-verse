@@ -32,14 +32,15 @@
       <!-- Player Entity (Collision Body & Logic) -->
       <a-entity
         id="player"
-        data-swv-player="animWalking: AnimalArmature|AnimalArmature|AnimalArmature|Walk; animIdle: AnimalArmature|AnimalArmature|AnimalArmature|Idle; playerHeight: 0;"
+        scale="0.5 0.5 0.5"
+        data-swv-player="animWalking: AnimalArmature|AnimalArmature|AnimalArmature|Walk; animIdle: AnimalArmature|AnimalArmature|AnimalArmature|Idle; playerHeight: 1; speed: 3; crouchHeight: 0.8; jumpForce: 8;"
       >
         <!-- Visible Player Model -->
         <a-entity
           id="player-model-entity"
           gltf-model="#player-model"
           modify-materials
-          scale="0.5 0.5 0.5"
+          
         ></a-entity>
       </a-entity>
 
