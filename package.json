@@ -1,7 +1,7 @@
 {
   "name": "senangwebs-verse",
   "version": "1.1.6",
-  "description": "Aframe component for 3rd person player controls",
+  "description": "A-Frame component for creating 3rd person player controls in WebXR and 3D web scenes.",
   "main": "index.js",
   "scripts": {
     "build": "webpack --mode production",
