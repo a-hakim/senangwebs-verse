@@ -9,19 +9,25 @@
     <!-- A-Frame v1.5.0 -->
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
-    <script src="./swv.js"></script>
+    <script src="../dist/swv.js"></script>
   </head>
 
   <body>
     <a-scene background="color: #ECECEC" renderer="colorManagement: true;">
       <!-- Assets -->
       <a-assets>
-        <a-asset-item
+        <!-- <a-asset-item
           id="player-model"
           src="./dog.glb"
           crossorigin="anonymous"
-        ></a-asset-item>
+        ></a-asset-item> -->
         <!-- Dog by Quaternius (https://poly.pizza/m/2kUk0QqpCg) -->
+         <a-asset-item
+          id="player-model"
+          src="./robot.glb"
+          crossorigin="anonymous"
+        ></a-asset-item>
+        <!-- Animated Robot by Quaternius (https://poly.pizza/m/QCm7qe9uNJ) -->
         <a-mixin
           id="cube"
           geometry="primitive: box; width: 2; height: 2; depth: 2"
@@ -33,14 +39,13 @@
       <a-entity
         id="player"
         scale="0.5 0.5 0.5"
-        data-swv-player="animWalking: AnimalArmature|AnimalArmature|AnimalArmature|Walk; animIdle: AnimalArmature|AnimalArmature|AnimalArmature|Idle; playerHeight: 1; speed: 3; crouchHeight: 0.8; jumpForce: 8;"
+        data-swv-player="animWalking: RobotArmature|Robot_Walking; animIdle: RobotArmature|Robot_Idle; playerHeight: 1; speed: 3; crouchHeight: 0.8; jumpForce: 8;"
       >
         <!-- Visible Player Model -->
         <a-entity
           id="player-model-entity"
           gltf-model="#player-model"
           modify-materials
-          
         ></a-entity>
       </a-entity>
 
