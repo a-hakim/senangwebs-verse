@@ -9,11 +9,17 @@
     <!-- A-Frame v1.7.0 -->
     <script src="https://aframe.io/releases/1.7.0/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.6.0/dist/aframe-extras.min.js"></script>
+    <script src="https://unpkg.com/aframe-environment-component@1.5.x/dist/aframe-environment-component.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-physics-system@v4.2.3/dist/aframe-physics-system.min.js"></script>
     <script src="../dist/swv.js"></script>
   </head>
 
   <body>
-    <a-scene background="color: #ECECEC" renderer="colorManagement: true;">
+    <a-scene
+      background="color: #ECECEC"
+      renderer="colorManagement: true;"
+      physics="debug: true"
+    >
       <!-- Assets -->
       <a-assets>
         <!-- <a-asset-item
@@ -22,7 +28,7 @@
           crossorigin="anonymous"
         ></a-asset-item> -->
         <!-- Dog by Quaternius (https://poly.pizza/m/2kUk0QqpCg) -->
-         <a-asset-item
+        <a-asset-item
           id="player-model"
           src="./robot.glb"
           crossorigin="anonymous"
@@ -46,7 +52,15 @@
           id="player-model-entity"
           gltf-model="#player-model"
           modify-materials
-        ></a-entity>
+        >
+          <a-cylinder
+            body="type: static; mass: 1; shape: a-cylinder;"
+            position="0 1.5 0"
+            radius="0.6"
+            height="1.4"
+            visible="false"
+          ></a-cylinder>
+        </a-entity>
       </a-entity>
 
       <!-- Camera Rig -->
@@ -64,21 +78,28 @@
       </a-entity>
 
       <!-- Environment -->
+      <a-entity environment="preset: default"></a-entity>
       <a-plane
-        position="0 0 0"
+        static-body
         rotation="-90 0 0"
+        position="0 -0.01 0"
         width="100"
         height="100"
-        material="color: #7BC8A4; roughness: 0.8;"
       ></a-plane>
 
-      <a-sky color="#AED7E0"></a-sky>
+      <a-box
+        dynamic-body
+        position="5 0.5 0"
+        width="2"
+        height="1"
+        depth="2"
+      ></a-box>
 
       <a-light type="ambient" color="#888"></a-light>
       <a-light type="directional" intensity="0.8" position="-1 1 2"></a-light>
 
       <!-- Some objects for scale and visual reference -->
-      <a-entity mixin="cube" position="-5 1 5"></a-entity>
+      <a-entity mixin="cube" dynamic-body position="-5 1 5"></a-entity>
       <a-entity mixin="cube" position="5 1 -5" scale="1.5 1.5 1.5"></a-entity>
       <a-entity mixin="cube" position="8 1 2"></a-entity>
       <a-entity mixin="cube" position="-3 1 -9"></a-entity>
