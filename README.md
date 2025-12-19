@@ -2,6 +2,8 @@
 
 SenangWebs Verse (SWV) is a lightweight A-Frame component for creating 3rd person player controls in WebXR and 3D web scenes. It provides smooth movement, jumping, crouching, and animation switching for your player model, making it easy to build interactive 3D experiences.
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
+
 ## Features
 
 - Simple 3rd person player movement (WASD)
