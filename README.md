@@ -2,14 +2,14 @@
 
 SenangWebs Verse (SWV) is a lightweight A-Frame component for creating 3rd person player controls in WebXR and 3D web scenes. It provides smooth movement, jumping, crouching, and animation switching for your player model, making it easy to build interactive 3D experiences.
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE.md)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## Features
 
 - Simple 3rd person player movement (WASD)
 - Jump and crouch support
 - Smooth camera follow
-- Animation switching (idle, walking)
+- Efficient animation switching on idle/walking state changes
 - Model rotation based on movement direction
 - Easy integration with A-Frame scenes
 - Customizable movement speed, jump force, and player height
@@ -136,7 +136,7 @@ Example:
 
 ## Animation
 
-The component uses the `animation-mixer` system from aframe-extras to switch between idle and walking animations based on movement. You can specify the animation clip names via the `animWalking` and `animIdle` options.
+The component uses the `animation-mixer` system from aframe-extras to switch between idle and walking animations based on movement. It updates the mixer only when the movement state changes, avoiding unnecessary animation resets on every frame. Specify model-specific clip names with the `animWalking` and `animIdle` options.
 
 ## Browser Support
 

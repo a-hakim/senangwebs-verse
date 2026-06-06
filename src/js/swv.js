@@ -34,12 +34,8 @@ AFRAME.registerComponent("data-swv-player", {
     window.addEventListener("keyup", this.onKeyUp);
 
     // Animation
-    if (this.data.playerModel) {
-      this.data.playerModel.setAttribute("animation-mixer", {
-        clip: "CharacterArmature|Idle",
-        loop: "repeat",
-      });
-    }
+    this.activeAnimation = null;
+    this.setAnimation(this.data.animIdle);
   },
 
   tick: function (_unused, timeDelta) {
@@ -75,10 +71,7 @@ AFRAME.registerComponent("data-swv-player", {
 
       if (this.direction.lengthSq() > 0) {
         // Moving
-        this.data.playerModel.setAttribute("animation-mixer", {
-          clip: this.data.animWalking,
-          loop: "repeat",
-        });
+        this.setAnimation(this.data.animWalking);
 
         // Calculate movement direction relative to camera
         const cameraRotationY = data.cameraRig.object3D.rotation.y;
@@ -93,10 +86,7 @@ AFRAME.registerComponent("data-swv-player", {
         }
       } else {
         // Idle
-        this.data.playerModel.setAttribute("animation-mixer", {
-          clip: this.data.animIdle,
-          loop: "repeat",
-        });
+        this.setAnimation(this.data.animIdle);
         // Optionally, keep model facing camera when idle
         // model.rotation.y += ((data.cameraRig.object3D.rotation.y + Math.PI - model.rotation.y + Math.PI * 3) % (Math.PI * 2) - Math.PI) * 0.2;
       }
@@ -136,6 +126,18 @@ AFRAME.registerComponent("data-swv-player", {
 
     // -- Make the camera follow the player's collision body --
     data.cameraRig.object3D.position.copy(this.el.object3D.position);
+  },
+
+  setAnimation: function (clip) {
+    if (!this.data.playerModel || this.activeAnimation === clip) {
+      return;
+    }
+
+    this.data.playerModel.setAttribute("animation-mixer", {
+      clip: clip,
+      loop: "repeat",
+    });
+    this.activeAnimation = clip;
   },
 
   onKeyDown: function (event) {
